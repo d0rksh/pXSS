@@ -26,22 +26,29 @@ proc process_path(path:seq[string],payload:string,query:seq[(string,string)],sc:
             var back =  path[index+1..path.len()-1]
             if index == path.len()-1:
                  var url = sc&"://"&host&"/"&concat_query(front.join("/")&"/"&encodeUrlComponent(payload),query)
-                 var client = newHttpClient()
-                 var resp = client.request(url)
-                 var body =  resp.body()
-                 if "pXSS" in body:
-                     stdout.setForeGroundColor(fgRed)
-                     stdout.styledWriteLine(fgDefault, url & " ", fgRed,styleBright, "[pXSS Reflected]",)
-                     stdout.resetAttributes()
+                 try:
+                    var client = newHttpClient()
+                    var resp = client.request(url)
+                    var body =  resp.body()
+                    if "pXSS" in body:
+                        stdout.setForeGroundColor(fgRed)
+                        stdout.styledWriteLine(fgDefault, url & " ", fgRed,styleBright, "[pXSS Reflected]",)
+                        stdout.resetAttributes()
+                 except:
+                        discard
+
             else:
                 var url =  sc&"://"&host&"/"&concat_query(front.join("/")&"/"&encodeUrlComponent(payload)&"/"&back.join("/"),query)
-                var client = newHttpClient()
-                var resp = client.request(url)
-                var body = resp.body()
-                if "pXSS" in body:
-                     stdout.setForeGroundColor(fgRed)
-                     stdout.styledWriteLine(fgDefault, url & " ", fgRed,styleBright, "[pXSS Reflected]",styleBright )
-                     stdout.resetAttributes()
+                try:
+                    var client = newHttpClient()
+                    var resp = client.request(url)
+                    var body = resp.body()
+                    if "pXSS" in body:
+                        stdout.setForeGroundColor(fgRed)
+                        stdout.styledWriteLine(fgDefault, url & " ", fgRed,styleBright, "[pXSS Reflected]",styleBright )
+                        stdout.resetAttributes()
+                except:
+                        discard
 var input = readAll(stdin)
 var all_url = split(input,"\n")
 var sub_seq = all_url.distribute(thread_count)
