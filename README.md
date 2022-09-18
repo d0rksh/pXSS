@@ -1,4 +1,4 @@
-# pXSS
+# 🪞pXSS🪞
 
 
 Takes Lists of URL's from stdin and replaces all path with pXSS and checks if the payload reflects in body
