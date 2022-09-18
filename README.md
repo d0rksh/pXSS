@@ -20,7 +20,7 @@ https://www.google.com/portal/admin/demo?name=14&age=8
 Replace with given input:
 
 ```
-▶ cat urls.txt | pxss"
+▶ cat urls.txt | pxss
 https://www.google.com/pXSS/admin/demo?name=14&age=8
 https://www.google.com/portal/pXSS/demo?name=14&age=8 [pXSS Reflected]
 https://www.google.com/portal/admin/pXSS?name=14&age=8 [pXSS Reflected]
