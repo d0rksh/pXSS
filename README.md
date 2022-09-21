@@ -22,4 +22,4 @@ https://www.google.com/portal/admin/demo?name=14&age=8
 
 ### Replaces with pXSS and checks if the payload reflected back
 
-
+![](https://raw.githubusercontent.com/d0rksh/pXSS/main/carbon1.png)
